@@ -14,11 +14,6 @@ During development, it's easiest to:
 1. Auth with AWS (environment variables are easiest, but will use creds file too)
 2. `lein run some-s3-bucket some-s3-key.json.gz some-dynamodb-table-to-write-to` 
 
-### Known problems: 
-
-Because operations is operating on various threads, they tend not to surface to stdout errors
-while operating under a `future`. This is less than ideal and I'll look for a way to fix it.
-
 ### Why Clojure? 
 
 **Language Maturity**
@@ -70,8 +65,13 @@ Additionally clojure's advanced language constructs like
 [software-transactional-memory](http://sw1nn.com/blog/2012/04/11/clojure-stm-what-why-how/)
 do allow for modification of values between threads in a safe manner. 
 
+### Known problems: 
+
+Because operations is operating on various threads, they tend not to surface to stdout errors
+while operating under a `future`. This is less than ideal and I'll look for a way to fix it.
+However, such problems should be surfaced by the integration tests.
+
 ### Todo: 
 
-- Testing
-- Actors for threading
+- Agents for threading
 - retry behaviour for database writes
